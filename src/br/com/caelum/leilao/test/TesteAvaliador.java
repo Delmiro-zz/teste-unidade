@@ -1,4 +1,4 @@
-package br.com.caelum.leilao.teste;
+package br.com.caelum.leilao.test;
 
 
 import static org.junit.Assert.assertEquals;
