@@ -7,7 +7,8 @@ import org.junit.Test;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
-import br.com.caelum.leilao.service.Avaliador;
+import br.com.caelum.leilao.service.AvaliadorService;
+import br.com.caelum.leilao.service.MatematicaService;
 
 public class TesteAvaliador {
 	
@@ -23,7 +24,7 @@ public class TesteAvaliador {
 		leilao.propoe(new Lance(zidane, 400.0));
 		
 		//parte 2: acao
-		Avaliador leiloeiro = new Avaliador();
+		AvaliadorService leiloeiro = new AvaliadorService();
 		leiloeiro.avalia(leilao);
 		
 		//parte 3: validacao
@@ -40,7 +41,7 @@ public class TesteAvaliador {
 		Leilao leilao = new Leilao("Console PS4");
 		
 		leilao.propoe(new Lance(joao, 1000.0));
-		Avaliador leiloeiro = new Avaliador();
+		AvaliadorService leiloeiro = new AvaliadorService();
 		leiloeiro.avalia(leilao);
 		
 		assertEquals(1000.0, leiloeiro.getMaiorLance(), 0.00001);
@@ -58,11 +59,29 @@ public class TesteAvaliador {
 		leilao.propoe(new Lance(joao, 300.0));
 		leilao.propoe(new Lance(maria, 400.0));
 		
-		Avaliador avaliador = new Avaliador();
+		AvaliadorService avaliador = new AvaliadorService();
 		avaliador.avalia(leilao);
 		List<Lance> tresMaiores = avaliador.getTresMaiores();
 		
 		assertEquals(3, tresMaiores.size());
 	}
-
+	
+	@Test
+	public void deveMultiplicarNumerosMaioresQue30(){
+		MatematicaService service = new MatematicaService();
+		assertEquals(50*4, service.calculoSimples(50));
+	}
+	
+	@Test
+	public void deveMultiplicarNumerosMaioresQue10MenoresQue30(){
+		MatematicaService service = new MatematicaService();
+		assertEquals(20*3, service.calculoSimples(20));
+	}
+	
+	@Test
+	public void deveMultiplicarNumerosMenores10(){
+		MatematicaService service = new MatematicaService();
+		assertEquals(5*2, service.calculoSimples(5));
+	}
+	
 }

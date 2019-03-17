@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 
-public class Avaliador {
+public class AvaliadorService {
 
 	private double maiorLance = Double.NEGATIVE_INFINITY;
 	private double menorLance = Double.POSITIVE_INFINITY;
