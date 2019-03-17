@@ -2,12 +2,9 @@ package br.com.caelum.leilao.test;
 
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import br.com.caelum.leilao.builder.CriadorDeLeilao;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
@@ -92,6 +89,12 @@ public class AvaliadorTest {
 	public void deveMultiplicarNumerosMenores10(){
 		MatematicaService service = new MatematicaService();
 		assertEquals(5*2, service.calculoSimples(5));
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void naoDeveAvaliarLeiloesSemNenhumLanceDado() {
+		Leilao leilao = new CriadorDeLeilao().para("Console PS4").constroi();
+		leiloeiro.avalia(leilao);
 	}
 	
 }
